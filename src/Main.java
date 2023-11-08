@@ -24,12 +24,16 @@ public class Main {
                         break;
                     case "REGISTER":
                         System.out.println("Make a recording: ");
-                        register(customers);
+                        register();
                         break;
                     case "COUNT":
                         System.out.println("count of customers: " + counter);
                         break;
                     case "REMOVE":
+                        System.out.print("remove customers ID: ");
+                        int index = scan.nextInt() - 1;
+                        scan.nextLine();
+                        remove(index);
                         break;
                     case "EXIT":
                         saveDate();
@@ -43,7 +47,7 @@ public class Main {
         }
     }
 
-    public static void register(String[][] customers){
+    public static void register(){
 
         System.out.print("First Name: ");
         customers[counter][0] = scan.nextLine();
@@ -63,6 +67,15 @@ public class Main {
         counter++;
     }
 
+    public static void remove(int index){
+        counter--;
+
+        customers[index] = customers[counter];
+        customers[counter] = null;
+
+        // доработать, сместить по порядку
+    }
+
     public static void uploadDate(){
         System.out.println("uploading File");
         String pathToFale = "C:\\Users\\ndyykanbaev\\Desktop\\My Projects\\register\\data\\data.txt";
@@ -80,8 +93,6 @@ public class Main {
 
                 counter++;
             }
-
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
